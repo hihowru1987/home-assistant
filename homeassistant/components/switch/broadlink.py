@@ -202,7 +202,7 @@ class BroadlinkRMSwitch(SwitchDevice):
             _LOGGER.debug("Empty packet.")
             return True
         try:
-            self._device.send_data(packet)
+            self._device.send_data(binascii.unhexlify(packet))
         except (socket.timeout, ValueError) as error:
             if retry < 1:
                 _LOGGER.error(error)
